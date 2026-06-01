@@ -42,11 +42,16 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     line-height: 1.7;
     color: var(--text-dark);
     background: linear-gradient(180deg, #F5F7FA 0%, #FFFFFF 100%);
+    overflow-x: hidden;
 }
 
 .container {
@@ -1253,28 +1258,54 @@ footer {
     }
     
     nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 85%;
-        max-width: 320px;
-        height: 100vh;
-        background: var(--white);
-        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        padding-top: 100px;
-        z-index: 1000;
+        position: fixed !important;
+        top: 0 !important;
+        left: auto !important;
+        right: 0 !important;
+        width: 75% !important;
+        max-width: 260px !important;
+        height: 100vh !important;
+        background: var(--white) !important;
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15) !important;
+        transform: translateX(100%) !important;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s ease, opacity 0.4s ease !important;
+        padding-top: 80px !important;
+        z-index: 1000 !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
     }
     
     nav.active {
-        right: 0;
+        transform: translateX(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Navigation Overlay */
+    .nav-overlay {
+        display: block !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        z-index: 999 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: opacity 0.4s ease, visibility 0.4s ease !important;
+    }
+    
+    .nav-overlay.active {
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     
     nav ul {
         flex-direction: column;
         align-items: center;
-        gap: 24px;
-        padding: 32px 24px;
+        gap: 16px;
+        padding: 20px 16px;
     }
     
     nav ul li {
@@ -1283,8 +1314,8 @@ footer {
     }
     
     nav a {
-        font-size: 17px;
-        padding: 12px 20px;
+        font-size: 15px;
+        padding: 10px 16px;
         display: block;
     }
     
